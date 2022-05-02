@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+//追加
+use App\Http\Livewire\Clients;
+use App\Http\Livewire\Statuses;
+use App\Http\Livewire\ClientsSearch;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +21,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//------------追加-----------------
+Route::get('clients', Clients::class)->name('clients');
+Route::get('clients/search', ClientsSearch::class)->name('clients.search');
+
+//Route::get('/', Clients::class)->name('clients.index');
+
+
+Route::get('statuses', Statuses::class)->name('statuses');
+
 
 Route::middleware([
     'auth:sanctum',

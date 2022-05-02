@@ -15,7 +15,6 @@ class Client extends Model
 
     public function status()
     {
-        // belongsToManyメソッドで多対多として関連付け
-        return $this->belongsToMany('App\Models\Status')->withTimestamps();
+        return $this->belongsTo(Status::class);
     }
 }

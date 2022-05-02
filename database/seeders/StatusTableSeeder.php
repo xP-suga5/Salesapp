@@ -16,7 +16,7 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
         //truncate(トランケート）メソッド:テーブル内のデータを一括削除する
-        \App\Models\Status::truncate();
+        //\App\Models\Status::truncate();
 
         $param = [
             'name' => 'リード顧客',
