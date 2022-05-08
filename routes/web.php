@@ -6,6 +6,8 @@ use App\Http\Livewire\Clients;
 use App\Http\Livewire\Statuses;
 use App\Http\Livewire\ClientsSearch;
 
+use App\Http\Controllers\StatusController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,12 @@ use App\Http\Livewire\ClientsSearch;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
 //------------追加-----------------
@@ -29,7 +35,12 @@ Route::get('clients/search', ClientsSearch::class)->name('clients.search');
 //Route::get('/', Clients::class)->name('clients.index');
 
 
-Route::get('statuses', Statuses::class)->name('statuses');
+//Route::get('statuses', Statuses::class)->name('statuses');
+
+Route::get('/status', [StatusController::class, 'index'])->name('status.index');
+Route::post('/status/all_update', [StatusController::class, 'all_update'])->name('status.all_update');
+
+
 
 
 Route::middleware([
@@ -40,4 +51,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    //Route::get('/top', function () {
+    //    return view('top');
+    //})->name('top');
 });

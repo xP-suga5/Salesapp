@@ -1,8 +1,11 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{--<x-jet-authentication-card-logo />--}}
         </x-slot>
+
+        <h1 class="flex justify-center items-center text-gray-600 text-5xl font-bold pt-8">SalesManagement</h1>
+        <p class="flex flex-col lg:justify-center items-center text-xl font-bold mx-6 pt-8">新規登録</p>
 
         <x-jet-validation-errors class="mb-4" />
 
@@ -10,7 +13,7 @@
             @csrf
 
             <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
+                <x-jet-label for="name" value="{{ __('ユーザー名') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
@@ -46,13 +49,13 @@
                 </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+            <div class="flex flex-col items-center justify-center mt-4">
+                {{--<a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
-                </a>
+                </a>--}}
 
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
+                <x-jet-button class="flex mt-6">
+                    {{ __('新規登録') }}
                 </x-jet-button>
             </div>
         </form>

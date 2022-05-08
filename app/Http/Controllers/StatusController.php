@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Controllers;
 
-use Livewire\Component;
-//追加
 use App\Models\Status;
+use Illuminate\Http\Request;
 
-class Statuses extends Component
+class StatusController extends Controller
 {
-    public $statuses, $name;
-
-    public function render()
+    public function index()
     {
-        $this->statuses = Status::all();
-        return view('livewire.statuses');
+        $statuses = Status::all();
+        return view('status.index', ['statuses' => $statuses]);
     }
 
-    public function all_update($request)
+    public function all_update(Request $request)
     {
         $names = $request->name;
 
@@ -35,6 +32,4 @@ class Statuses extends Component
 
         return redirect('/status');
     }
-
-
 }

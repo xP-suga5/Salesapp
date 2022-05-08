@@ -1,4 +1,5 @@
 require('./bootstrap');
+require("./fontawesome");
 
 import Alpine from 'alpinejs';
 

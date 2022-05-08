@@ -1,40 +1,73 @@
+@guest
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 sm:flex sm:items-center">
+        <div class="text-2xl">SalesManegement</div>
+    </div>
+</div>
+@if (Route::has('login'))
+<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+    @if (Route::has('register'))
+    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+    @endif
+</div>
+@endif
+
+@endguest
+
+
+@auth
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
+        <div class="flex justify-end h-16">
+            <div class="flex sm:items-center mr-auto">
                 <!-- Logo -->
                 <!--<div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
-                    </a>
-                </div>-->
+                          <a href="{{ route('dashboard') }}">
+                              <x-jet-application-mark class="block h-9 w-auto" />
+                          </a>
+                      </div>-->
 
                 <!-- Navigation Links -->
                 <!--<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div>-->
+                          <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                              {{ __('Dashboard') }}
+                          </x-jet-nav-link>
+                      </div>-->
 
-                <a href="{{ route('clients') }}" class="sm:flex sm:items-center">
+                <a href="{{ route('clients.search') }}" class="sm:flex sm:items-center">
                     <div class="text-2xl">SalesManegement</div>
                 </a>
 
-                
+
             </div>
 
-            <div class="flex">
+            <!--<div class="flex">
                 <a href="{{ route('clients.search') }}" class="sm:flex sm:items-center">
                     <div class="text">home</div>
                 </a>
-            </div>
-            <div class="flex">
-                <a href="{{ route('clients') }}" class="sm:flex sm:items-center">
-                    <div class="text">登録</div>
+            </div>-->
+
+            <div class="sm:flex sm:items-center content-end mr-4">
+                <a href="{{ route('clients') }}" class="">
+                    <!--<div class="text">登録</div>-->
+                    <i class="fa-solid fa-circle-plus"></i>
                 </a>
             </div>
 
+            {{-- <button wire:click="create()"
+                class="bg-blue-500 hover bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">新規登録</button> --}}
+            {{-- @include('livewire.clients.create') --}}
+
+            <div class="sm:flex sm:items-center content-end mr-4">
+                <a href="{{ route('status.index') }}" class="">
+                    <!--<div class="text">設定</div>-->
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+            </div>
 
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -155,10 +188,10 @@
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
+                        <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
+                        <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
@@ -167,7 +200,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -249,3 +282,4 @@
         </div>
     </div>
 </nav>
+@endauth

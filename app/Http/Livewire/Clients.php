@@ -22,6 +22,7 @@ class Clients extends Component
 
     public function create()
     {
+        $this->statuses = status::all();
         $this->resetInputFields();
         $this->openModal();
     }
@@ -52,6 +53,7 @@ class Clients extends Component
             'manager' => 'required',
             'status_id' => 'required'
         ]);
+
 
         Client::updateOrCreate(['id' => $this->client_id], 
         [
